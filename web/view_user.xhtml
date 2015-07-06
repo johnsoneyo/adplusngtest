@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>View User</title>
+    </h:head>
+    <h:body>
+
+        <p:layout fullPage="true">
+            <h:form >
+                <p:layoutUnit position="north" size="50">
+                    <h:outputText value="Welcome as #{adplusLogin.act.accountName}" />
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+
+                    Profile
+                    <hr></hr>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="full name :" />
+                        <h:outputText value="#{adplusLogin.twt.accountId.accountName}" />
+                        <h:outputText value="username :" />
+                        <h:outputText value="#{adplusLogin.twt.accountId.accountUsername}" />
+                        <h:outputText value="password :" />
+                        <h:outputText value="#{adplusLogin.twt.accountId.accountPassword}" />
+
+
+                    </h:panelGrid>
+  
+
+                    <hr></hr>
+                    
+                    <h:outputText value="#{adplusLogin.twt.accountId.accountName} Tweets" />
+                    <p:dataTable value="#{adplusLogin.twt.accountId.tweetsList}" var="twt" >
+
+                        <p:column>
+                            <f:facet name="header" >#{twt.tweetMessage}</f:facet>
+                            #{twt.accountId.accountUsername}:  #{twt.tweetMessage} #{twt.timeCreated}
+                        </p:column> 
+
+                    </p:dataTable>
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="400">
+                <h:graphicImage value="image?account_id=#{adplusLogin.act.accountId}" width="180" height="180" />
+             
+                </p:layoutUnit>
+               
+                <p:layoutUnit position="south" size="100">
+                    <h:outputText value="Adplus 2015" />
+                </p:layoutUnit>
+            </h:form>
+
+        </p:layout>
+
+    </h:body>
+</html>

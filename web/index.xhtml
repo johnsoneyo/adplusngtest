@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Adplus Test</title>
+    </h:head>
+    <h:body>
+
+        <p:layout fullPage="true">
+            <h:form>
+                <p:layoutUnit position="north" size="100">
+                    <h:outputText value="Adplus Test" />
+                 
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" size="100">
+                    <p:dataTable value="#{adplusFunc.tweets}" var="twt" >
+
+                        <p:column>
+                            <f:facet name="header" >#{twt.tweetMessage}</f:facet>
+                            #{twt.accountId.accountUsername}:  #{twt.tweetMessage} #{twt.timeCreated}
+                        </p:column> 
+
+                    </p:dataTable>
+
+
+                    <p:dialog header="Twitter App Sign in" width="400" height="150" widgetVar="dlg">
+                        <h:panelGrid columns="2">
+                            <h:outputText value="username" />
+                            <h:inputText value="#{adplusLogin.act.accountUsername}" />
+                            <h:outputText  value="password" />
+                            <h:inputSecret value="#{adplusLogin.act.accountPassword}" />
+                            <h:outputText value="" />
+                            <p:commandButton binding="#{adplusLogin.component}"  action="#{adplusLogin.login}" value="sign in" /> 
+
+                          
+                        </h:panelGrid>
+
+
+                    </p:dialog>
+
+                    <p:dialog header="Sign up" width="400" height="180" widgetVar="dlg2">
+                        <h:panelGrid columns="2">
+                            <h:outputText value="full name" />
+                            <h:inputText value="#{adplusFunc.acct.accountName}" />
+                            <h:outputText value="username" />
+                            <h:inputText value="#{adplusFunc.acct.accountUsername}" />
+                            <h:outputText  value="password" />
+                            <h:inputText value="#{adplusFunc.acct.accountPassword}" />
+                            <h:outputText value="" />
+                            <p:commandButton  binding="#{adplusFunc.component}"  action="#{adplusFunc.createAccount}" value="sign up" /> 
+
+                          
+                        </h:panelGrid>
+
+
+                    </p:dialog>
+
+                    <p:commandButton type="button" onclick="dlg.show()" value="sign in" />
+                    <p:commandButton type="button" onclick="dlg2.show()" value="create account" />
+
+                </p:layoutUnit>
+                <p:layoutUnit position="south">
+                    <h:outputText value="Adplus 2015" />&copy;
+                </p:layoutUnit>
+            </h:form>
+        </p:layout>
+
+    </h:body>
+</html>
+
